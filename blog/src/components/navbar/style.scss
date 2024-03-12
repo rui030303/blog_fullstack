@@ -1,0 +1,39 @@
+.navbar{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    img{
+        height: 100px;
+    }
+    .links{
+        display: flex;
+        gap:20px;
+        align-items: center;
+
+        .link{
+            color:rgb(165, 234, 165);
+            text-decoration: none;
+        
+
+            h1{
+                font-size: 20px;
+            }
+            span{
+                font-size: 20px;
+            }
+        }
+        .write{
+            background-color: beige;
+            border-radius: 50%;
+            border: 1px solid greenyellow;
+
+            &:hover{
+                background-color: red;
+                border-radius: 50%;
+            }
+        }
+    }
+
+    
+}
