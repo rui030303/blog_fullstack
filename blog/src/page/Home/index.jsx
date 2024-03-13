@@ -22,22 +22,24 @@ const Home = ()=>{
             img:logo
         }
     ]
-    return <div className="home">
-        {posts.map(item=>
-            <div className = 'post' key={item.id}>
-                <div className="img">
-                    <img src={item.img} alt="error" />
-                </div>
-                <div className="info">
-                    <Link to={`/single/${item.id}`}>
-                        <h1>{item.title}</h1>
-                    </Link>
-                    <p>{item.desc}</p>
-                    <button>Read More</button>
-                </div>
-            </div>)
-        }
+    return (
+        <div className="home">
+            {posts.map(item=>
+                <div className = 'post' key={item.id}>
+                    <div className="img">
+                        <img src={item.img} alt="error" />
+                    </div>
+                    <div className="info">
+                        <Link to={`/single/${item.id}`}>
+                            <h1>{item.title}</h1>
+                        </Link>
+                        <p>{item.desc}</p>
+                        <button>Read More</button>
+                    </div>
+                </div>)
+            }
         </div>
+    )
 }
 
 export default Home

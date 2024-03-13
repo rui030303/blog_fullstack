@@ -1,0 +1,35 @@
+.write{
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+
+    .content{
+        flex: 5;
+        .box{
+            height: 300px;
+            object-fit: cover;
+        }
+    }
+    .menu{
+        display: flex;
+        flex-direction: column;
+        flex: 2;
+        .item{
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+
+            .file{
+                display: none;
+            }
+        }
+        .category{
+            display: flex;
+            flex-direction: column;
+            gap: 1px;
+        }
+
+    }
+
+}
