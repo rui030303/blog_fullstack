@@ -1,27 +1,23 @@
 import './style.scss'
 import logo from '../../img/logo.png'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
+import { useEffect, useState } from 'react'
+import axios from 'axios'
+
 const Home = ()=>{
-    const posts = [
-        {
-            id:1,
-            title:"test1",
-            desc:"describe1",
-            img:logo
-        },
-        {
-            id:2,
-            title:"test2",
-            desc:"describe2",
-            img:logo
-        },
-        {
-            id:3,
-            title:"test3",
-            desc:"describe3",
-            img:logo
-        }
-    ]
+    const [posts, setPosts] = useState([])
+    const cat =useLocation().search
+
+    const fetchData = async ()=>{
+        try {
+           const res = await axios.get(`http://localhost:3000/posts${cat}`)
+           setPosts(res.data)
+        } catch (err) {
+            console.log(err);
+        } 
+    }
+    useEffect(()=>{fetchData()}, [cat])
+   
     return (
         <div className="home">
             {posts.map(item=>
@@ -30,7 +26,7 @@ const Home = ()=>{
                         <img src={item.img} alt="error" />
                     </div>
                     <div className="info">
-                        <Link to={`/single/${item.id}`}>
+                        <Link to={`/posts/${item.id}`}>
                             <h1>{item.title}</h1>
                         </Link>
                         <p>{item.desc}</p>

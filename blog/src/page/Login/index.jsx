@@ -1,7 +1,8 @@
 import axios from 'axios';
 import './style.scss'
 import { Link, useNavigate } from 'react-router-dom'
-import { useState } from 'react';
+import { useContext, useState } from 'react';
+import { AuthContext } from '../../context/authContext.jsx';
 
 const Login = ()=>{
     const navigate = useNavigate();
@@ -14,17 +15,21 @@ const Login = ()=>{
         setUser((prev)=>({...prev, [e.target.name]:e.target.value}))
     }
 
+    const {currentUser, login} = useContext(AuthContext)
+
+    console.log(currentUser);
+
     const loginSubmit = async (e)=>{
         e.preventDefault()
         try {
-            const res = await axios.post("http://localhost:3000/login", user);
+            // const res = await axios.post("http://localhost:3000/login", user,{ withCredentials: true });
+            await login(user)
             navigate('/')
         } catch (err) {
-            // setErrorMsg(err.response.data)
+            setErrorMsg(err.response.data)
             console.log(err);
         }
     }
-
 
     return (
         <div className="login"> 
