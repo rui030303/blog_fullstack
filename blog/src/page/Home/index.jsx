@@ -16,6 +16,10 @@ const Home = ()=>{
     }
     useEffect(()=>{fetchData()}, [cat])
    
+    const getText = (html) =>{
+        const doc = new DOMParser().parseFromString(html, "text/html")
+        return doc.body.textContent
+    }
     return (
         <div className="home">
             {posts.map(item=>
@@ -27,7 +31,7 @@ const Home = ()=>{
                         <Link to={`/posts/${item.id}`}>
                             <h1>{item.title}</h1>
                         </Link>
-                        <p>{item.desc}</p>
+                        <p>{getText(item.desc)}</p>
                         <button>Read More</button>
                     </div>
                 </div>)
