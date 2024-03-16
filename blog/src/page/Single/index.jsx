@@ -2,13 +2,15 @@ import './style.scss'
 import logo from '../../img/logo.png'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import Menu from '../../components/menu'
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import axios from 'axios'
+import { AuthContext } from '../../context/authContext'
 
 const Single = ()=>{
     const [post, setPost] = useState({})
     const postID = useLocation().pathname.split('/')[2]
     const navigate = useNavigate()
+    const {currentUser} = useContext(AuthContext)
     const fetchData = async ()=>{
         try {
             const res = await axios.get(`http://localhost:3000/posts/${postID}`)
@@ -21,12 +23,11 @@ const Single = ()=>{
 
     const deletePost = async ()=>{
         try {
-            const res = await axios.delete(`http://localhost:3000/posts/${postID}`)
+            const res = await axios.delete(`http://localhost:3000/posts/${postID}`,{ withCredentials: true })
             navigate('/')
         } catch (error) {
             console.log(error);
         }
-        
     }
 
     return (
@@ -36,14 +37,14 @@ const Single = ()=>{
                 <div className="user">
                     <img src={post.userImg} alt="uesrImg error" />
                     <div className="info">
-                        <span className='username'><b>{post.username}</b></span>
+                        {post.length > 0 && <span className='username'><b>{post[0].username}</b></span>}
                         <span className='date'>post date</span>
                     </div>
-                    <Link to={'/write?edit = 2'}>
-                        <button>Edit</button>
+                    <Link to={'/write?edit = 2'} state={post}>
+                        {post.length > 0 && currentUser.id === post[0].uid &&<button>Edit</button>}
                     </Link>
                     <Link >
-                        <button onClick={deletePost}>Delete</button>
+                        {post.length > 0 && currentUser.id === post[0].uid &&<button onClick={deletePost}>Delete</button>}
                     </Link>
                 </div>
                 <div className='title'>
@@ -51,10 +52,11 @@ const Single = ()=>{
                 </div>
                 <div className="text">
                     {post.desc}
+                    
                 </div>
             </div>
             <div className="menu">
-                <Menu></Menu>
+                {post.length>0 && <Menu cat = {post[0].cat}></Menu>}
             </div>
         </div>
     )

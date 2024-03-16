@@ -12,7 +12,7 @@ const register = (req, res) => {
         if (data.length > 0) {
             return res.status(409).json("User already exists!");
         }
-
+        
         // 用户不存在，继续注册流程
         // 使用bcryptjs哈希密码
         const salt = bcrypt.genSaltSync(10);
@@ -48,7 +48,8 @@ const login = (req, res)=>{
             const token = jwt.sign({id:data[0].id}, "jwt_key")
             const {password, ...other} = data[0]
             res.cookie("access_token", token, {
-                httpOnly:true
+                // httpOnly:true
+
             }).status(200).json(other)
             
         }
