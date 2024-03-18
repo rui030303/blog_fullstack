@@ -1,18 +1,18 @@
-import './style.scss'
+import './style2.scss'
 import { Link, useLocation } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import axios from 'axios'
 
 const Home = ()=>{
     const [posts, setPosts] = useState([])
-    const cat =useLocation().search
+    const cat = useLocation().search
     const fetchData = async ()=>{
         try {
            const res = await axios.get(`http://localhost:3000/posts${cat}`)
            setPosts(res.data)
         } catch (err) {
             console.log(err);
-        } 
+        }
     }
     useEffect(()=>{fetchData()}, [cat])
    
