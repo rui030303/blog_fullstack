@@ -13,7 +13,7 @@ const Single = ()=>{
     const {currentUser} = useContext(AuthContext)
     const fetchData = async ()=>{
         try {
-            const res = await axios.get(`http://localhost:3000/posts/${postID}`)
+            const res = await axios.get(`https://blog-rui-backend.onrender.com/posts/${postID}`)
             setPost(res.data)
         } catch (error) {
             console.log(error);
@@ -23,7 +23,7 @@ const Single = ()=>{
 
     const deletePost = async ()=>{
         try {
-            const res = await axios.delete(`http://localhost:3000/posts/${postID}`,{ withCredentials: true })
+            const res = await axios.delete(`https://blog-rui-backend.onrender.com/posts/${postID}`,{ withCredentials: true })
             navigate('/')
         } catch (error) {
             console.log(error);

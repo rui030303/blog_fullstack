@@ -22,7 +22,7 @@ const Register = ()=>{
     const registerSubmit = async (e) => {
         e.preventDefault()
         try{
-            const res = await axios.post("http://localhost:3000/register", user)
+            const res = await axios.post("https://blog-rui-backend.onrender.com/register", user)
             navigate("/login")
         }catch(err){
             setErrorMsg(err.response.data);

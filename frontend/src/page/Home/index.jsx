@@ -8,7 +8,7 @@ const Home = ()=>{
     const cat = useLocation().search
     const fetchData = async ()=>{
         try {
-           const res = await axios.get(`http://localhost:3000/posts${cat}`)
+           const res = await axios.get(`https://blog-rui-backend.onrender.com/posts${cat}`)
            setPosts(res.data)
         } catch (err) {
             console.log(err);

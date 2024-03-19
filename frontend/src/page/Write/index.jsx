@@ -3,7 +3,7 @@ import './style.scss'
 import { useState } from 'react';
 import ReactQuill from "react-quill"
 import "react-quill/dist/quill.snow.css"
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const Write = ()=>{
 
@@ -13,7 +13,7 @@ const Write = ()=>{
     const [value, setValue] = useState(state?.desc||"");
     const [file, setFile] = useState('');
     const [cat, setCat] = useState(state?.cat||"");
-
+    const navigate = useNavigate()
     const upload = async()=>{
         try {
             const formData = new FormData()
@@ -22,9 +22,10 @@ const Write = ()=>{
             for (let pair of formData.entries()) {
                 console.log(`${pair[0]}: ${pair[1]}`);
             }
-            const res = await axios.post("http://localhost:3000/upload",formData,{
+            const res = await axios.post("https://blog-rui-backend.onrender.com/upload",formData,{
                 withCredentials: true
             })
+            navigate('/')
             return res.data
         } catch (error) {
             console.log(error);

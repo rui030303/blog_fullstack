@@ -17,7 +17,7 @@ const Login = ()=>{
 
     const {currentUser, login} = useContext(AuthContext)
 
-    console.log(currentUser);
+    // console.log(currentUser);
 
     const loginSubmit = async (e)=>{
         e.preventDefault()

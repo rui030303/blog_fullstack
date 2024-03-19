@@ -1,5 +1,4 @@
 import './style.scss'
-import logo from '../../img/logo.png'
 import { Link, useLocation } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import axios from 'axios'
@@ -8,7 +7,7 @@ const Menu = ({cat})=>{
     // const cat =useLocation().search
     const fetchData = async ()=>{
         try {
-           const res = await axios.get(`http://localhost:3000/posts/?cat=${cat}`)
+           const res = await axios.get(`https://blog-rui-backend.onrender.com/posts/?cat=${cat}`)
            setPosts(res.data)
         } catch (err) {
             console.log(err);

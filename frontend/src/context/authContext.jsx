@@ -9,12 +9,12 @@ export const AuthContextProvider = ({children})=>{
     )
 
     const login = async (user)=>{
-        const res = await axios.post("http://localhost:3000/login", user,{ withCredentials: true })
+        const res = await axios.post("https://blog-rui-backend.onrender.com/login", user,{ withCredentials: true })
         setCurrentUser(res.data)
     }
 
     const logout = async (user)=>{
-        const res = await axios.post("http://localhost:3000/logout", user,{ withCredentials: true })
+        const res = await axios.post("https://blog-rui-backend.onrender.com/logout", user,{ withCredentials: true })
         console.log(res);
         setCurrentUser(null)
     }

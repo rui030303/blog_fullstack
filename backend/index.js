@@ -43,6 +43,6 @@ app.use("/", postsRouter)
 app.use("/", usersRouter)
 app.use("/", authRouter)
 
-app.listen(3000, (req, res)=>{
+app.listen(process.env.PORT || 3000, (req, res)=>{
     console.log("Backend successfullly start");
 })
